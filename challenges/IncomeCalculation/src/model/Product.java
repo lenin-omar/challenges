@@ -19,7 +19,7 @@ public class Product implements Comparable {
     private String name;
     private Double price;
     private Type type;
-    Double income;
+    private Double income;
 
     public Product(String name, Double price, Type type) {
         this.name = name;
@@ -35,6 +35,18 @@ public class Product implements Comparable {
     @Override
     public int compareTo(Object o) {
         return Double.compare(income, ((Product) o).income);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public Double getIncome() {
+        return income;
     }
 
 }

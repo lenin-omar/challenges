@@ -15,10 +15,10 @@ public class Combination implements Comparable {
     }
 
     private void setTotalIncome() {
-        //Determinar cual de esos 5 productos genera menor gananciay sumar la ganancia de los otros 4 productos.
+        //Determinar cual de esos 5 productos genera menor ganancia y sumar la ganancia de los otros 4 productos.
         Arrays.sort(productCombination);
         for (int i = 1; i < productCombination.length; i++) {
-            totalIncome += productCombination[i].income;
+            totalIncome += productCombination[i].getIncome();
         }
     }
 

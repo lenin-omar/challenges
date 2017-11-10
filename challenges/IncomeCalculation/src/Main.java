@@ -44,54 +44,64 @@ public class Main {
         List<Combination> combinations = new ArrayList<>();
         Product[] productCombination;
         do {
-            //Obtener los productos de los indices mostrados.
+            //Obtener los productos en base a los índices.
             productCombination = new Product[]{products[i4], products[i3], products[i2], products[i1], products[i0]};
             //A cada combinación asignar los índices como id.
+            //System.out.println(String.format("%s-%s-%s-%s-%s", i4, i3, i2, i1, i0));
             Combination combination = new Combination(String.format("%s-%s-%s-%s-%s", i4, i3, i2, i1, i0), productCombination);
-            //System.out.println("Combination: " + combination.getKey() + ", Total income: " + combination.getTotalIncome());
             combinations.add(combination);
             //Siguiente combinacion
             if (i0 < products.length-1) {
                 //Continua con el proceso normal
                 i0++;
             } else {
-                //Aumenta uno a la siguiente posicion
+                //Aumenta uno a la siguiente posición
                 if (i1 < products.length-1) {
                     //Continua con el proceso normal
                     i1++;
                 } else {
-                    //Aumenta uno a la siguiente posicion
+                    //Aumenta uno a la siguiente posición
                     if (i2 < products.length-1) {
                         //Continua con el proceso normal
                         i2++;
                     } else {
-                        //Aumenta uno a la siguiente posicion
+                        //Aumenta uno a la siguiente posición
                         if (i3 < products.length-1) {
                             //Continua con el proceso normal
                             i3++;
                         } else {
-                            //Aumenta uno a la siguiente posicion
+                            //Aumenta uno a la siguiente posición
                             i4++;
-                            //Iguala el indice actual al de la siguiente posicion
+                            //Iguala el indice actual al de la siguiente posición
                             i3 = i4;
                         }
-                        //Iguala el indice actual al de la siguiente posicion
+                        //Iguala el indice actual al de la siguiente posición
                         i2 = i3;
                     }
-                    //Iguala el indice actual al de la siguiente posicion
+                    //Iguala el indice actual al de la siguiente posición
                     i1 = i2;
                 }
-                //Iguala el indice actual al de la siguiente posicion
+                //Iguala el indice actual al de la siguiente posición
                 i0 = i1;
             }
         } while (i4 < products.length);
-        //System.out.println("combinations.size(): " + combinations.size());  //11,628 combinaciones
         sort(combinations);
         //Mostrar resultado final
         for (int i = 0; i < combinations.size(); i++) {
-            System.out.println(i + " - Combination: " + combinations.get(i).getKey() + ", Total income: " + combinations.get(i).getTotalIncome());
+            System.out.println(String.format("%s - Combination: %s, Total income: %5.2f", i, combinations.get(i).getKey(), combinations.get(i).getTotalIncome()));
         }
+        //Mostrar combinación con menor ganancia
+        System.out.println("\nLOWEST INCOME COMBINATION");
+        showCombinationProducts(combinations.get(0).getProductCombination());
+        //Mostrar combinación con mayor ganancia
+        System.out.println("\nHIGHEST INCOME COMBINATION");
+        showCombinationProducts(combinations.get(combinations.size()-1).getProductCombination());
+    }
 
+    private static void showCombinationProducts(Product[] prods) {
+        for (Product producto : prods) {
+            System.out.println(String.format("%s - %5.2f", producto.getName(), producto.getPrice()));
+        }
     }
 
 }
